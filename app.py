@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-
-# Import necessary functions
 from sidebar import setup_sidebar
 from style import set_background
 
@@ -52,4 +50,19 @@ elif page == "Add New Client":
     with st.form("client_form"):
         name = st.text_input("Name")
         phone = st.text_input("Phone Number", max_chars=10)
-        age = st.number_input("Age", min_value=0,
+        age = st.number_input("Age", min_value=0, max_value=120)
+        gender = st.selectbox("Gender", ["Male", "Female", "Other"])
+        visit_date = st.date_input("Visit Date")
+        diagnosis = st.text_input("Diagnosis")
+        
+        if len(phone) != 10:
+            st.error("Please enter a valid 10-digit phone number.")
+        
+        submitted = st.form_submit_button("Submit")
+        
+        if submitted and len(phone) == 10:
+            st.success(f"New client '{name}' added.")
+
+    # Data Download Option
+    csv = df.to_csv(index=False)
+    st.download_button("Download Client Data", csv, file_name="client_data.csv", mime="text/csv")
