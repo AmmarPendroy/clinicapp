@@ -58,9 +58,18 @@ def set_background(main_color_name, sidebar_color_name):
     bg_color = selected_main["bg"]
     text_color = selected_main["text"]
     sidebar_bg_color = selected_sidebar["bg"]
-    sidebar_text_color = selected_sidebar["text"]
 
-    # Apply custom CSS for both main background and sidebar
+    # Determine contrasting text color for the sidebar based on background color luminance
+    # (simplified version)
+    def get_contrasting_text_color(background_color):
+        # Calculate brightness of the color (luminance)
+        r, g, b = [int(background_color[i:i+2], 16) for i in (1, 3, 5)]
+        luminance = (0.2126 * r + 0.7152 * g + 0.0722 * b)
+        return "#000000" if luminance > 128 else "#ffffff"
+
+    sidebar_text_color = get_contrasting_text_color(sidebar_bg_color)
+
+    # Apply custom CSS for both main background and sidebar with dynamic text color
     st.markdown(
         f"""
         <style>
