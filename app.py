@@ -36,30 +36,33 @@ st.sidebar.markdown("📱 Phone: +964 750 389 8085")
 
 # ----- Theme Styling -----
 def set_background(color_name):
-    styles = {
-        "Classic White": "#ffffff",
-        "Soft Blue": "#d0e6f7",
-        "Dark Mode": "#1e1e1e",
-        "Light Green": "#d4f7d4",
-        "Peach": "#ffe5b4"
+    themes = {
+        "Classic White": {"bg": "#ffffff", "text": "#000000"},
+        "Soft Blue": {"bg": "#d0e6f7", "text": "#000000"},
+        "Dark Mode": {"bg": "#1e1e1e", "text": "#ffffff"},
+        "Light Green": {"bg": "#d4f7d4", "text": "#000000"},
+        "Peach": {"bg": "#ffe5b4", "text": "#000000"}
     }
 
-    text_color = "#000000" if color_name != "Dark Mode" else "#ffffff"
+    selected = themes.get(color_name, themes["Classic White"])
+    bg_color = selected["bg"]
+    text_color = selected["text"]
 
-    bg_color = styles.get(color_name, "#ffffff")
     st.markdown(
         f"""
         <style>
-            .stApp {{
-                background-color: {bg_color};
-                color: {text_color};
-            }}
+        html, body, [class*="css"] {{
+            background-color: {bg_color} !important;
+            color: {text_color} !important;
+        }}
+        .stApp {{
+            background-color: {bg_color} !important;
+            color: {text_color} !important;
+        }}
         </style>
         """,
         unsafe_allow_html=True
     )
-
-set_background(theme)
 
 # ----- Main Content -----
 st.title("🏥 Clinic Client Dashboard")
