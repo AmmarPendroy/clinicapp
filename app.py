@@ -30,10 +30,9 @@ theme = st.sidebar.selectbox("Choose background style", [
 
 # Contact info
 st.sidebar.markdown("---")
-st.sidebar.subheader("📞 Contact Info")
-st.sidebar.markdown("📱 **Phone**: +964 750 389 8085")
-st.sidebar.markdown("📧 **Email**: ammar.muhammed@geg-construction.com")
-st.sidebar.markdown("📍 **Location**: Erbil, Kurdistan Region, Iraq")
+st.sidebar.subheader("📞 Contact")
+st.sidebar.markdown("📧 Email: ammar.muhammed@geg-construction.com")
+st.sidebar.markdown("📱 Phone: +964 750 389 8085")
 
 # ----- Theme Styling -----
 def set_background(color_name):
