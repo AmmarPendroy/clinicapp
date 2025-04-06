@@ -79,6 +79,8 @@ def set_background(main_color_name, sidebar_color_name):
         }}
         .stSidebar {{
             background-color: {sidebar_bg_color} !important;
+        }}
+        .stSidebar .sidebar .css-1d391kg {{
             color: {sidebar_text_color} !important;
         }}
         </style>
