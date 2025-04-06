@@ -51,14 +51,16 @@ def set_background(main_color_name, sidebar_color_name):
         "Peach": {"bg": "#ffe5b4", "text": "#000000"}
     }
 
+    # Define main theme colors (background and text)
     selected_main = themes.get(main_color_name, themes["Classic White"])
     selected_sidebar = themes.get(sidebar_color_name, themes["Classic White"])
 
     bg_color = selected_main["bg"]
     text_color = selected_main["text"]
     sidebar_bg_color = selected_sidebar["bg"]
+    sidebar_text_color = selected_sidebar["text"]
 
-    # Apply custom CSS
+    # Apply custom CSS for both main background and sidebar
     st.markdown(
         f"""
         <style>
@@ -68,6 +70,7 @@ def set_background(main_color_name, sidebar_color_name):
         }}
         .stSidebar {{
             background-color: {sidebar_bg_color} !important;
+            color: {sidebar_text_color} !important;
         }}
         </style>
         """,
