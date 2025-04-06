@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Import the necessary functions
+# Import necessary functions
 from sidebar import setup_sidebar
 from style import set_background
 
