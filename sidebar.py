@@ -6,18 +6,18 @@ def setup_sidebar():
     st.sidebar.title("Navigation")
     page = st.sidebar.radio("Go to", ["Dashboard", "Add New Client"])
 
-    # Theme switcher
+    # Theme switcher (only White and Black available)
     st.sidebar.markdown("---")
     st.sidebar.subheader("🎨 Theme Style")
     theme = st.sidebar.selectbox("Choose background style", [
-        "Classic White", "Soft Blue", "Dark Mode", "Light Green", "Peach"
+        "White", "Black"
     ])
 
-    # Sidebar background switcher
+    # Sidebar background switcher (only White and Black available)
     st.sidebar.markdown("---")
     st.sidebar.subheader("🌈 Sidebar Background Style")
     sidebar_theme = st.sidebar.selectbox("Choose sidebar background style", [
-        "Classic White", "Soft Blue", "Dark Mode", "Light Green", "Peach"
+        "White", "Black"
     ])
 
     # Contact info
