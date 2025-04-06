@@ -2,7 +2,7 @@ import streamlit as st
 
 # ----- Theme Styling -----
 def set_background(main_color_name, sidebar_color_name):
-    # Define two basic color themes: White and Black
+    # Define two color themes: White and Black
     themes = {
         "White": {"bg": "#ffffff", "text": "#000000"},
         "Black": {"bg": "#000000", "text": "#ffffff"},
