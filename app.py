@@ -59,16 +59,15 @@ def set_background(main_color_name, sidebar_color_name):
     text_color = selected_main["text"]
     sidebar_bg_color = selected_sidebar["bg"]
 
-    # Set the text color for the sidebar based on the background
-    def get_sidebar_text_color(sidebar_bg_color):
-        # Check if the sidebar background is light or dark
-        light_colors = ["#ffffff", "#d0e6f7", "#d4f7d4", "#ffe5b4"]
-        if sidebar_bg_color in light_colors:
+    # Determine contrasting text color for the sidebar based on background color
+    def get_contrasting_text_color(background_color):
+        # If the background color is white or close to white, make the text black
+        if background_color in ["#ffffff", "#ffe5b4", "#d0e6f7", "#d4f7d4"]:
             return "#000000"  # Black text for light backgrounds
         else:
             return "#ffffff"  # White text for dark backgrounds
 
-    sidebar_text_color = get_sidebar_text_color(sidebar_bg_color)
+    sidebar_text_color = get_contrasting_text_color(sidebar_bg_color)
 
     # Apply custom CSS for both main background and sidebar with dynamic text color
     st.markdown(
