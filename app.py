@@ -28,6 +28,13 @@ theme = st.sidebar.selectbox("Choose background style", [
     "Classic White", "Soft Blue", "Dark Mode", "Light Green", "Peach"
 ])
 
+# Sidebar background switcher
+st.sidebar.markdown("---")
+st.sidebar.subheader("🌈 Sidebar Background Style")
+sidebar_theme = st.sidebar.selectbox("Choose sidebar background style", [
+    "Classic White", "Soft Blue", "Dark Mode", "Light Green", "Peach"
+])
+
 # Contact info
 st.sidebar.markdown("---")
 st.sidebar.subheader("📞 Contact")
@@ -35,7 +42,7 @@ st.sidebar.markdown("📧 Email: ammar.muhammed@geg-construction.com")
 st.sidebar.markdown("📱 Phone: +964 750 389 8085")
 
 # ----- Theme Styling -----  
-def set_background(color_name):
+def set_background(main_color_name, sidebar_color_name):
     themes = {
         "Classic White": {"bg": "#ffffff", "text": "#000000"},
         "Soft Blue": {"bg": "#d0e6f7", "text": "#000000"},
@@ -44,9 +51,12 @@ def set_background(color_name):
         "Peach": {"bg": "#ffe5b4", "text": "#000000"}
     }
 
-    selected = themes.get(color_name, themes["Classic White"])
-    bg_color = selected["bg"]
-    text_color = selected["text"]
+    selected_main = themes.get(main_color_name, themes["Classic White"])
+    selected_sidebar = themes.get(sidebar_color_name, themes["Classic White"])
+
+    bg_color = selected_main["bg"]
+    text_color = selected_main["text"]
+    sidebar_bg_color = selected_sidebar["bg"]
 
     # Apply custom CSS
     st.markdown(
@@ -56,13 +66,16 @@ def set_background(color_name):
             background-color: {bg_color} !important;
             color: {text_color} !important;
         }}
+        .stSidebar {{
+            background-color: {sidebar_bg_color} !important;
+        }}
         </style>
         """,
         unsafe_allow_html=True
     )
 
-# Apply selected theme
-set_background(theme)
+# Apply selected theme and sidebar theme
+set_background(theme, sidebar_theme)
 
 # ----- Main Content -----
 st.title("🏥 Clinic Client Dashboard")
