@@ -2,14 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Title
-st.title("🏥 Clinic Client Dashboard")
-
-# Sidebar navigation
-st.sidebar.title("Navigation")
-page = st.sidebar.radio("Go to", ["Dashboard", "Add New Client"])
-
-# Sample Data (can be replaced with database or CSV)
+# ----- Sample Data -----
 @st.cache_data
 def load_data():
     data = {
@@ -24,9 +17,56 @@ def load_data():
 
 df = load_data()
 
+# ----- Sidebar -----
+st.sidebar.title("Navigation")
+page = st.sidebar.radio("Go to", ["Dashboard", "Add New Client"])
+
+# Theme switcher
+st.sidebar.markdown("---")
+st.sidebar.subheader("🎨 Theme Style")
+theme = st.sidebar.selectbox("Choose background style", [
+    "Classic White", "Soft Blue", "Dark Mode", "Light Green", "Peach"
+])
+
+# Contact info
+st.sidebar.markdown("---")
+st.sidebar.subheader("📞 Contact Info")
+st.sidebar.markdown("📱 **Phone**: +964 750 389 8085")
+st.sidebar.markdown("📧 **Email**: ammar.muhammed@geg-construction.com")
+st.sidebar.markdown("📍 **Location**: Erbil, Kurdistan Region, Iraq")
+
+# ----- Theme Styling -----
+def set_background(color_name):
+    styles = {
+        "Classic White": "#ffffff",
+        "Soft Blue": "#d0e6f7",
+        "Dark Mode": "#1e1e1e",
+        "Light Green": "#d4f7d4",
+        "Peach": "#ffe5b4"
+    }
+
+    text_color = "#000000" if color_name != "Dark Mode" else "#ffffff"
+
+    bg_color = styles.get(color_name, "#ffffff")
+    st.markdown(
+        f"""
+        <style>
+            .stApp {{
+                background-color: {bg_color};
+                color: {text_color};
+            }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+set_background(theme)
+
+# ----- Main Content -----
+st.title("🏥 Clinic Client Dashboard")
+
 if page == "Dashboard":
     st.subheader("📊 Client Overview")
-
     st.dataframe(df)
 
     st.markdown("### Gender Distribution")
@@ -47,9 +87,7 @@ elif page == "Add New Client":
         gender = st.selectbox("Gender", ["Male", "Female", "Other"])
         visit_date = st.date_input("Visit Date")
         diagnosis = st.text_input("Diagnosis")
-
         submitted = st.form_submit_button("Submit")
 
         if submitted:
             st.success(f"New client '{name}' added (Note: Not saved permanently in this demo).")
-
