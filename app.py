@@ -34,7 +34,7 @@ st.sidebar.subheader("📞 Contact")
 st.sidebar.markdown("📧 Email: ammar.muhammed@geg-construction.com")
 st.sidebar.markdown("📱 Phone: +964 750 389 8085")
 
-# ----- Theme Styling -----
+# ----- Theme Styling -----  
 def set_background(color_name):
     themes = {
         "Classic White": {"bg": "#ffffff", "text": "#000000"},
@@ -48,14 +48,11 @@ def set_background(color_name):
     bg_color = selected["bg"]
     text_color = selected["text"]
 
+    # Apply custom CSS
     st.markdown(
         f"""
         <style>
-        html, body, [class*="css"] {{
-            background-color: {bg_color} !important;
-            color: {text_color} !important;
-        }}
-        .stApp {{
+        html, body, .stApp {{
             background-color: {bg_color} !important;
             color: {text_color} !important;
         }}
@@ -63,6 +60,9 @@ def set_background(color_name):
         """,
         unsafe_allow_html=True
     )
+
+# Apply selected theme
+set_background(theme)
 
 # ----- Main Content -----
 st.title("🏥 Clinic Client Dashboard")
