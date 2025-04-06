@@ -22,10 +22,10 @@ def load_data():
 df = load_data()
 
 # ----- Sidebar -----
-page, theme, sidebar_theme = setup_sidebar()
+page, theme = setup_sidebar()
 
-# Apply selected theme and sidebar theme
-set_background(theme, sidebar_theme)
+# Apply selected theme for both main content and sidebar
+set_background(theme)
 
 # ----- Main Content -----
 st.title("🏥 Clinic Client Dashboard")
